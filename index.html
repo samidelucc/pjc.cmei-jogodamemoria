@@ -118,21 +118,24 @@
   .stat-pill span { color: var(--accent-purple); }
 
   /* MEMORY BOARD */
-    .memory-board { 
+  .memory-board { 
     display: grid; 
-    /* Deixa o navegador decidir quantas cartas cabem, com no mínimo 120px de largura */
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
-    gap: 16px; 
-    width: 100%; 
-    max-width: 800px; /* Aumentado para preencher melhor telas grandes */
-    margin: 0 auto; 
+    /* Trava exatamente em 4 colunas com tamanhos iguais */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 24px; /* Aumentei um pouco o respiro entre elas */
+    width: 90%; /* Pede para o jogo ocupar quase toda a largura da tela */
+    max-width: 1200px; /* Liberou geral! Deixa esticar bem nas lousas grandes */
+    margin: 40px auto; 
     padding: 10px; 
   }
   
   .mem-card { 
-    /* Mantém o aspect-ratio para navegadores modernos, mas adiciona um height fixo como salva-vidas para a lousa */
+    width: 100%;
     aspect-ratio: 3/4; 
-    height: 180px; 
+    /* Truque para a lousa: 22vh significa 22% da altura total da tela. 
+       Assim as 3 linhas cabem perfeitamente sem criar barra de rolagem */
+    height: 22vh; 
+    min-height: 180px; /* Segurança para não sumir */
     border-radius: 16px; 
     cursor: pointer; 
     perspective: 600px; 
@@ -170,9 +173,11 @@
   
   .mem-front::after { 
     content: '🎈'; 
-    font-size: 2rem; 
+    /* O balão também vai crescer um pouco para acompanhar a carta */
+    font-size: 3rem; 
     opacity: 0.6; 
   }
+
   .mem-front-pattern { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr); gap: 4px; padding: 6px; opacity: 0.15; }
   .mem-front-pattern span { width: 100%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,0.8); }
   .mem-back { background: var(--card-bg); transform: rotateY(180deg); flex-direction: column; gap: 4px; box-shadow: 0 4px 14px rgba(0,0,0,0.12); border: 3px solid transparent; padding: 8px 4px 20px; justify-content: center; }
