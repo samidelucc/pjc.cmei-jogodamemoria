@@ -116,34 +116,35 @@
   .mem-stats { display: flex; gap: 20px; margin-bottom: 28px; flex-wrap: wrap; justify-content: center; }
   .stat-pill { background: rgba(255,255,255,0.92); border-radius: 30px; padding: 8px 22px; font-family: 'Baloo 2', cursive; font-size: 1.05rem; font-weight: 700; color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
   .stat-pill span { color: var(--accent-purple); }
-
   /* MEMORY BOARD */
   .memory-board { 
-    display: grid; 
-    /* Trava exatamente em 4 colunas com tamanhos iguais */
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 24px; /* Aumentei um pouco o respiro entre elas */
-    width: 90%; /* Pede para o jogo ocupar quase toda a largura da tela */
-    max-width: 1200px; /* Liberou geral! Deixa esticar bem nas lousas grandes */
-    margin: 40px auto; 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-content: center;
+    gap: 20px; 
+    width: 100%; 
+    /* Diminuímos a largura máxima para o tabuleiro não entrar debaixo da casa de balões */
+    max-width: 780px; 
+    /* Margem para centralizar e empurrar um pouco para baixo */
+    margin: 60px auto 0 auto; 
     padding: 10px; 
   }
   
   .mem-card { 
-    width: 100%;
-    aspect-ratio: 3/4; 
-    /* Truque para a lousa: 22vh significa 22% da altura total da tela. 
-       Assim as 3 linhas cabem perfeitamente sem criar barra de rolagem */
-    height: 22vh; 
-    min-height: 180px; /* Segurança para não sumir */
+    /* Definimos um tamanho fixo e exato para as cartas. Nada de porcentagem! */
+    width: 160px; 
+    height: 220px; 
     border-radius: 16px; 
     cursor: pointer; 
-    perspective: 600px; 
+    perspective: 1000px; 
     position: relative; 
   }
   
   .mem-card-inner { 
-    position: relative; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
     width: 100%; 
     height: 100%; 
     transform-style: preserve-3d; 
@@ -157,19 +158,16 @@
   
   .mem-front, .mem-back { 
     position: absolute; 
-    /* Substituímos o inset pelas medidas clássicas */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
     border-radius: 16px; 
     backface-visibility: hidden; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
   }
-
   
   .mem-front { 
     background: linear-gradient(135deg, #9B5DE5, #7B3DC5); 
@@ -179,11 +177,10 @@
   
   .mem-front::after { 
     content: '🎈'; 
-    /* O balão também vai crescer um pouco para acompanhar a carta */
-    font-size: 3rem; 
+    font-size: 4rem; /* Aumentei o balãozinho para acompanhar a carta maior */
     opacity: 0.6; 
   }
-
+  
   .mem-front-pattern { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr); gap: 4px; padding: 6px; opacity: 0.15; }
   .mem-front-pattern span { width: 100%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,0.8); }
   .mem-back { background: var(--card-bg); transform: rotateY(180deg); flex-direction: column; gap: 4px; box-shadow: 0 4px 14px rgba(0,0,0,0.12); border: 3px solid transparent; padding: 8px 4px 20px; justify-content: center; }
