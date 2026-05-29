@@ -157,13 +157,19 @@
   
   .mem-front, .mem-back { 
     position: absolute; 
-    inset: 0; 
+    /* Substituímos o inset pelas medidas clássicas */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
     border-radius: 16px; 
     backface-visibility: hidden; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
   }
+
   
   .mem-front { 
     background: linear-gradient(135deg, #9B5DE5, #7B3DC5); 
