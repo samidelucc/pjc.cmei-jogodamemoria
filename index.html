@@ -117,30 +117,30 @@
   .stat-pill { background: rgba(255,255,255,0.92); border-radius: 30px; padding: 8px 22px; font-family: 'Baloo 2', cursive; font-size: 1.05rem; font-weight: 700; color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
   .stat-pill span { color: var(--accent-purple); }
   /* MEMORY BOARD */
-  .memory-board { 
+   .memory-board { 
     display: flex; 
     flex-wrap: wrap; 
     justify-content: center; 
     align-content: center;
-    gap: 20px; 
+    gap: 20px; /* Mantemos o respiro para não grudar, bom para touch */
     width: 100%; 
-    /* Diminuímos a largura máxima para o tabuleiro não entrar debaixo da casa de balões */
-    max-width: 780px; 
-    /* Margem para centralizar e empurrar um pouco para baixo */
+    /* Reduzimos o tabuleiro para não esticar demais na tela gigante */
+    max-width: 600px; 
     margin: 60px auto 0 auto; 
     padding: 10px; 
   }
   
   .mem-card { 
-    /* Definimos um tamanho fixo e exato para as cartas. Nada de porcentagem! */
-    width: 160px; 
-    height: 220px; 
+    /* CARTAS MENORES: Reduzimos de 160x220 para 120x165 */
+    width: 120px; 
+    height: 165px; 
     border-radius: 16px; 
     cursor: pointer; 
     perspective: 1000px; 
     position: relative; 
   }
   
+  /* O restante do código abaixo não muda nada */
   .mem-card-inner { 
     position: absolute; 
     top: 0; 
@@ -177,9 +177,11 @@
   
   .mem-front::after { 
     content: '🎈'; 
-    font-size: 4rem; /* Aumentei o balãozinho para acompanhar a carta maior */
+    /* Reduzimos o tamanho do balão para acompanhar a carta menor */
+    font-size: 3rem; 
     opacity: 0.6; 
   }
+
   
   .mem-front-pattern { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr); gap: 4px; padding: 6px; opacity: 0.15; }
   .mem-front-pattern span { width: 100%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,0.8); }
