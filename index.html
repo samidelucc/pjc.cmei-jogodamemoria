@@ -118,13 +118,61 @@
   .stat-pill span { color: var(--accent-purple); }
 
   /* MEMORY BOARD */
-  .memory-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 100%; max-width: 580px; margin: 0 auto; padding: 0 4px; }
-  .mem-card { aspect-ratio: 3/4; border-radius: 16px; cursor: pointer; perspective: 600px; position: relative; }
-  .mem-card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.5s cubic-bezier(.4,0,.2,1); border-radius: 16px; }
-  .mem-card.flipped .mem-card-inner, .mem-card.matched .mem-card-inner { transform: rotateY(180deg); }
-  .mem-front, .mem-back { position: absolute; inset: 0; border-radius: 16px; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; }
-  .mem-front { background: linear-gradient(135deg, #9B5DE5, #7B3DC5); box-shadow: 0 4px 14px rgba(155,93,229,0.35); overflow: hidden; }
-  .mem-front::after { content: '🎈'; font-size: 2rem; opacity: 0.6; }
+    .memory-board { 
+    display: grid; 
+    /* Deixa o navegador decidir quantas cartas cabem, com no mínimo 120px de largura */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+    gap: 16px; 
+    width: 100%; 
+    max-width: 800px; /* Aumentado para preencher melhor telas grandes */
+    margin: 0 auto; 
+    padding: 10px; 
+  }
+  
+  .mem-card { 
+    /* Mantém o aspect-ratio para navegadores modernos, mas adiciona um height fixo como salva-vidas para a lousa */
+    aspect-ratio: 3/4; 
+    height: 180px; 
+    border-radius: 16px; 
+    cursor: pointer; 
+    perspective: 600px; 
+    position: relative; 
+  }
+  
+  .mem-card-inner { 
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    transform-style: preserve-3d; 
+    transition: transform 0.5s cubic-bezier(.4,0,.2,1); 
+    border-radius: 16px; 
+  }
+  
+  .mem-card.flipped .mem-card-inner, .mem-card.matched .mem-card-inner { 
+    transform: rotateY(180deg); 
+  }
+  
+  .mem-front, .mem-back { 
+    position: absolute; 
+    inset: 0; 
+    border-radius: 16px; 
+    backface-visibility: hidden; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+  }
+  
+  .mem-front { 
+    background: linear-gradient(135deg, #9B5DE5, #7B3DC5); 
+    box-shadow: 0 4px 14px rgba(155,93,229,0.35); 
+    overflow: hidden; 
+  }
+  
+  .mem-front::after { 
+    content: '🎈'; 
+    font-size: 2rem; 
+    opacity: 0.6; 
+  }
   .mem-front-pattern { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr); gap: 4px; padding: 6px; opacity: 0.15; }
   .mem-front-pattern span { width: 100%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,0.8); }
   .mem-back { background: var(--card-bg); transform: rotateY(180deg); flex-direction: column; gap: 4px; box-shadow: 0 4px 14px rgba(0,0,0,0.12); border: 3px solid transparent; padding: 8px 4px 20px; justify-content: center; }
